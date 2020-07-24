@@ -1,4 +1,5 @@
-#1/bin/bash
+#!/bin/bash
+
 zbxconf="/etc/zabbix/zabbix_agentd.conf"
 zbxbak="/etc/zabbix/zabbix_agentd.conf.bak"
 include="Include=/etc/zabbix/scripts/*conf"
