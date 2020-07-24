@@ -13,7 +13,7 @@ if [[ -d "$dir" ]]; then
 
         /etc/init.d/zabbix_agent restart
 else
-        mv "$dir"/"$file" "$dir"/$filebak.date +"%d-%m-%y-%H:%M:%S"
+        mv "$dir"/"$file" "$dir"/"$filebak".date +"%d-%m-%y-%H:%M:%S"
         cp $file $dir
         /etc/init.d/zabbix_agent restart
 fi
