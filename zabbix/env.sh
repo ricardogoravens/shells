@@ -2,6 +2,7 @@
 
 zbxconf="/etc/zabbix/zabbix_agentd.conf"
 zbxbak="/etc/zabbix/zabbix_agentd.conf.bak"
+zbxtemp="/etc/zabbix/zabbix_agentd.conf.temp"
 include="Include=/etc/zabbix/scripts/*conf"
 file="security.conf"
 filebak="security.conf.bak"

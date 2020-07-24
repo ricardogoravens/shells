@@ -7,7 +7,10 @@ if [ ! -e "$dir" ]; then
         mkdir -p "$dir"
         cp $file $dir
        if  [ -f "$dir"/"$file" ]; then
-                cp "$zbxconf" "$zbxbak-$today"
+                sed '/UserParameter/d' "$zbxconf" > "$zbxtemp""
+                mv "$zbxconf" "$zbxbak-$today"
+                echo $zbxtemp > $zbxconf
+                rm -f $zbxtemp
                 echo $include >> $zbxconf
                 echo $update $today >> $zbxconf
                 /etc/init.d/zabbix-agent restart
@@ -25,6 +28,10 @@ else
         rm -f "$dir"/"$file"
         cp "$file" "$dir"
         if [ -f "$dir"/"$file" ]; then
+                sed '/UserParameter/d' "$zbxconf" > "$zbxtemp"
+                mv "$zbxconf" "$zbxbak-$today"
+                echo $zbxtemp > $zbxconf
+                rm -f $zbxtemp
                 echo $update $today >> $zbxconf
                 /etc/init.d/zabbix-agent restart
                 exit 0
