@@ -34,5 +34,6 @@ else
                 echo $update $today >> $zbxconf
                 /etc/init.d/zabbix-agent restart
                 exit 0
+        fi
         exit 1
 fi
