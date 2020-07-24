@@ -7,10 +7,7 @@ if [ ! -e "$dir" ]; then
         mkdir -p "$dir"
         cp $file $dir
        if  [ -f "$dir"/"$file" ]; then
-                sed '/UserParameter/d' "$zbxconf" > "$zbxtemp""
-                mv "$zbxconf" "$zbxbak-$today"
-                echo $zbxtemp > $zbxconf
-                rm -f $zbxtemp
+                cp "$zbxconf" "$zbxbak-$today"
                 echo $include >> $zbxconf
                 echo $update $today >> $zbxconf
                 /etc/init.d/zabbix-agent restart
@@ -20,7 +17,7 @@ if [ ! -e "$dir" ]; then
 
 else
         # mv "$dir"/"$file" "$dir"/"$filebak-$today"
-        # cp $file $dir 
+        # cp $file $dir
         # echo $update $today >> $zbxconf
         # /etc/init.d/zabbix-agent restart
         echo "Já existe a pasta Script, atualizando o arquivo secury.conf"
@@ -28,10 +25,6 @@ else
         rm -f "$dir"/"$file"
         cp "$file" "$dir"
         if [ -f "$dir"/"$file" ]; then
-                sed '/UserParameter/d' "$zbxconf" > "$zbxtemp"
-                mv "$zbxconf" "$zbxbak-$today"
-                echo $zbxtemp > $zbxconf
-                rm -f $zbxtemp
                 echo $update $today >> $zbxconf
                 /etc/init.d/zabbix-agent restart
                 exit 0
