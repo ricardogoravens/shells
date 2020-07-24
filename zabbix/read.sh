@@ -19,8 +19,13 @@ if [ ! -e "$dir" ]; then
     
         /etc/init.d/zabbix-agent restart
 else
-        mv "$dir"/"$file" "$dir"/"$filebak-$today"
-        cp $file $dir 
+        # mv "$dir"/"$file" "$dir"/"$filebak-$today"
+        # cp $file $dir 
+        # echo $update $today >> $zbxconf
+        # /etc/init.d/zabbix-agent restart
+
+        rm -f "$dir"/"$file"
+        cp $file $dir
         echo $update $today >> $zbxconf
         /etc/init.d/zabbix-agent restart
 fi
