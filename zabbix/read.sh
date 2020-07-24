@@ -4,6 +4,7 @@ include="Include=/etc/zabbix/scripts/*conf"
 file="security.conf"
 filebak="security.conf.bak"
 dir="/etc/zabbix/scripts"
+today=`date +"%d-%m-%y-%H:%M:%S"`
 
 if [[ -d "$dir" ]]; then
         mkdir -p "$dir"
@@ -11,9 +12,9 @@ if [[ -d "$dir" ]]; then
         cp $zbxconf $zbxbak
         echo $include >> $zbxconf
 
-        /etc/init.d/zabbix_agent restart
+        /etc/init.d/zabbix-agent restart
 else
-        mv "$dir"/"$file" "$dir"/"$filebak".date +"%d-%m-%y-%H:%M:%S"
+        mv "$dir"/"$file" "$dir"/"$filebak-$today"
         cp $file $dir
-        /etc/init.d/zabbix_agent restart
+        /etc/init.d/zabbix-agent restart
 fi
